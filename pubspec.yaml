@@ -1,6 +1,6 @@
-name: git_pusher
-description: A new Flutter package project.
-version: 0.0.1
+name: git_puller
+description: git pull by yaml file.
+version: 1.0.0
 homepage:
 
 environment:
