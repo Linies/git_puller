@@ -14,7 +14,9 @@ Future<void> build() async {
     await Future.forEach<RemoteLab>(root.projects, (node) async {
       await deepSearch(node, packageRoot, root.host);
     });
-  } on FormatYamlException {} catch (e) {}
+  } on FormatYamlException {} catch (e, stack) {
+    print('build -> $stack');
+  }
 }
 
 Future<void> deepSearch(RemoteLab root, String path, String host) async {
