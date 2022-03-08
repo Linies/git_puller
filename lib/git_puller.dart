@@ -1,3 +1,3 @@
 library git_puller;
 
-export 'package:git_pusher/remote/builder.dart' hide deepSearch, pull;
+export 'package:git_puller/remote/builder.dart' hide deepSearch, pull;
