@@ -1,7 +1,8 @@
 name: git_puller
 description: git pull by yaml file.
 version: 1.0.0
-homepage:
+authors: liniec<liniec50@gmail.com>
+homepage: https://github.com/Linies/git_puller
 
 environment:
   sdk: ">=2.13.0 <3.0.0"
