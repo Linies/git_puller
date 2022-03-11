@@ -1,3 +1,4 @@
-## 0.0.1
+## 1.0.0
 
-* TODO: Describe initial release.
+## 1.0.1
+ *无需同步仓库更新操作
