@@ -29,7 +29,7 @@ Future<void> deepSearch(RemoteLab root, String path, String host) async {
   } else if (root is RemoteLib) {
     var dir = Directory('$path/${root.name}');
     if (!dir.existsSync()) dir.createSync();
-    await Future.forEach<LibBranch>(
+    Future.forEach<LibBranch>(
         root.library, (lib) => pull(lib, '${dir.path}/${lib.name}', host));
   }
 }
