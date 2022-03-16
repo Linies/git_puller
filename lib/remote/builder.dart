@@ -1,6 +1,4 @@
-import 'dart:io' show Directory, Platform, Process;
-
-import "package:path/path.dart" show dirname;
+import 'dart:io' show Directory, Process, Platform;
 
 import '../utils/yaml_reader.dart';
 import 'model.dart';
@@ -8,29 +6,32 @@ import 'remote_reader.dart';
 
 Future<void> build() async {
   try {
-    var uri = Platform.script;
-    var packageRoot = '${dirname(uri.toFilePath())}/..';
-    var root = rootFromJson(loadYaml('$packageRoot/remote.yaml'));
+    var packageRoot = Directory.current.path;
+    var root = rootFromJson(
+        loadYaml('$packageRoot${Platform.pathSeparator}remote.yaml'));
     await Future.forEach<RemoteLab>(root.projects, (node) async {
       await deepSearch(node, packageRoot, root.host);
     });
-  } on FormatYamlException {} catch (e, stack) {
+  } on FormatYamlException {
+  } catch (e, stack) {
     print('build -> $stack');
   }
 }
 
 Future<void> deepSearch(RemoteLab root, String path, String host) async {
   if (root is RemoteSub) {
-    var dir = Directory('$path/${root.name}');
+    var dir = Directory('$path${Platform.pathSeparator}${root.name}');
     if (!dir.existsSync()) dir.createSync();
     await Future.forEach<RemoteLab>(root.sub, (node) async {
       await deepSearch(node, dir.path, host);
     });
   } else if (root is RemoteLib) {
-    var dir = Directory('$path/${root.name}');
+    var dir = Directory('$path${Platform.pathSeparator}${root.name}');
     if (!dir.existsSync()) dir.createSync();
     Future.forEach<LibBranch>(
-        root.library, (lib) => pull(lib, '${dir.path}/${lib.name}', host));
+        root.library,
+        (lib) =>
+            pull(lib, '${dir.path}${Platform.pathSeparator}${lib.name}', host));
   }
 }
 

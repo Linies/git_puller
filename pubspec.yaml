@@ -1,6 +1,6 @@
 name: git_puller
 description: git pull by yaml file.
-version: 1.0.2
+version: 1.0.3
 author: liniec<liniec50@gmail.com>
 homepage: https://github.com/Linies/git_puller
 
@@ -11,7 +11,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  path: ^1.8.0
   yaml: ^3.1.0
 
 dev_dependencies:
