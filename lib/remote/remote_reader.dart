@@ -17,7 +17,7 @@ RemoteSub subFromJson(Map<String, dynamic> json) {
   if (json['sub'] == null) throw FormatException();
   return RemoteSub(
       json['name'],
-      json['sub'].map((element) {
+      json['sub'].map<RemoteLab>((element) {
         try {
           return subFromJson(formatMap(element.toString()));
         } on FormatException {
