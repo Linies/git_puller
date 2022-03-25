@@ -1,6 +1,6 @@
 name: git_puller
 description: git pull by yaml file.
-version: 1.0.3
+version: 1.0.4
 author: liniec<liniec50@gmail.com>
 homepage: https://github.com/Linies/git_puller
 

@@ -39,8 +39,8 @@ Future<void> pull(LibBranch lib, String target, String host) async {
   var dir = Directory(target);
   print('current directory: $target');
   if (!dir.existsSync()) {
-    var result =
-        await Process.run('git', ['clone', '$host/${lib.repo}', '$target']);
+    var result = await Process.run(
+        'git', ['clone', '-b', '$target', '$host/${lib.repo}']);
     print('${result.stdout}');
   } else {
     await Future.forEach<Future>([
